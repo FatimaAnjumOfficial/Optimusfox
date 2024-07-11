@@ -1,8 +1,7 @@
-/* Write a function called fetchUsers that uses the JSONPlaceholder API (https://jsonplaceholder.typicode.com)
-to fetch a list of users and returns a promise that resolves to an array of user objects. Use the fetch method
-to make the API call and the json method to parse the response. Use the filter method to filter out the users
-that do not have an email address. Use the reduce method to calculate the total number of users that have a
-phone number listed. Write code to test this function by calling it and logging the result. */
+/* Write a function called fetchUsers that uses the JSONPlaceholder API (https://jsonplaceholder.typicode.com) to fetch a list of users
+and returns a promise that resolves to an array of user objects. Use the fetch method to make the API call and the json method to parse
+the response. Use the filter method to filter out the users that do not have an email address. Use the reduce method to calculate the
+total number of users that have a phone number listed. Write code to test this function by calling it and logging the result. */
 
 async function fetchUsers()
 {
