@@ -3,6 +3,41 @@ and returns a promise that resolves to an array of album objects. Use the fetch 
 the response. Use the filter method to filter out the albums that do not have a title. Use the map method to transform the remaining
 albums into a simpler format. Write code to test this function by calling it and logging the result. */
 
+//Async/await
+// Define the fetchAlbums function
+async function fetchAlbums()
+{
+    const url = 'https://jsonplaceholder.typicode.com/albums';
+    
+    try
+    {
+        const response = await fetch(url);
+        const albums = await response.json();
+        const filteredAlbums = albums.filter(album => album.title);
+        const transformedAlbums = filteredAlbums.map(album => ({
+            id: album.id,
+            title: album.title,
+            userId: album.userId
+        }));
+        
+        return transformedAlbums;
+    }
+    catch (error)
+    {
+        console.error('Error fetching albums:', error);
+        throw error; //controler provides a default handler
+    }
+}
+
+fetchAlbums()
+    .then(albums => {
+        console.log('Fetched Albums:', albums);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+
 //Chain is used without async/await
 function fetchAlbums()
 {
@@ -38,39 +73,4 @@ fetchAlbums()
      })
      .catch(error => {
     console.error('Error:', error);
-    });
-
-
-//Async/await
-// Define the fetchAlbums function
-async function fetchAlbums()
-{
-    const url = 'https://jsonplaceholder.typicode.com/albums';
-    
-    try
-    {
-        const response = await fetch(url);
-        const albums = await response.json();
-        const filteredAlbums = albums.filter(album => album.title);
-        const transformedAlbums = filteredAlbums.map(album => ({
-            id: album.id,
-            title: album.title,
-            userId: album.userId
-        }));
-        
-        return transformedAlbums;
-    }
-    catch (error)
-    {
-        console.error('Error fetching albums:', error);
-        throw error; //controler provides a default handler
-    }
-}
-
-fetchAlbums()
-    .then(albums => {
-        console.log('Fetched Albums:', albums);
-    })
-    .catch(error => {
-        console.error('Error:', error);
     });
