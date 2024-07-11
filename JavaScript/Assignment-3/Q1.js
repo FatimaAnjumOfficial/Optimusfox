@@ -4,7 +4,6 @@ the response. Use the filter method to filter out the albums that do not have a 
 albums into a simpler format. Write code to test this function by calling it and logging the result. */
 
 //Async/await
-// Define the fetchAlbums function
 async function fetchAlbums()
 {
     const url = 'https://jsonplaceholder.typicode.com/albums';
