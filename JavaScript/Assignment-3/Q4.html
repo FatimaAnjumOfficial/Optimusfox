@@ -14,6 +14,18 @@ css or bootstrap too. -->
 <title>Fetch Comments Example</title>
 </head>
 <body>
+<div class="container mt-5">
+    <h1>Comments Table</h1>
+    <table>
+            <tr>
+                <th>ID</th>  //table header cells
+                <th>Name</th>
+                <th>Email</th>
+                <th>Body</th>
+            </tr>
+        <tbody id="commentsTableBody"></tbody>
+    </table>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     function fetchComments()
@@ -22,7 +34,8 @@ css or bootstrap too. -->
 
         return axios.get(url)
             .then(response => {
-                const filteredComments = response.data.filter(comment => comment.name);
+                const comments = response.data;
+                const filteredComments = comments.filter(comment => comment.name);
 
                 const tableBody = document.getElementById('commentsTableBody');
                 filteredComments.forEach(comment => {
@@ -43,12 +56,13 @@ css or bootstrap too. -->
             });
     }
 
-    fetchComments().then(comments => {
-        console.log('Fetched comments:', comments);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+    fetchComments()
+        .then(comments => {
+            console.log('Fetched comments:', comments);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 </script>
 </body>
 </html>
