@@ -12,27 +12,8 @@ css or bootstrap too. -->
 <html>
 <head>
 <title>Fetch Comments Example</title>
-<!-- (optional, if you want to use Bootstrap) -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<div class="container mt-5">
-    <h1>Comments Table</h1>
-    <table class="table table-bordered mt-3">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Body</th>
-            </tr>
-        </thead>
-        <tbody id="commentsTableBody">
-        </tbody>
-    </table>
-</div>
-
-<!-- Include Axios library -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     function fetchComments()
@@ -41,7 +22,6 @@ css or bootstrap too. -->
 
         return axios.get(url)
             .then(response => {
-
                 const filteredComments = response.data.filter(comment => comment.name);
 
                 const tableBody = document.getElementById('commentsTableBody');
