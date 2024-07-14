@@ -3,7 +3,51 @@ and returns a promise that resolves to an array of album objects. Use the fetch 
 the response. Use the filter method to filter out the albums that do not have a title. Use the map method to transform the remaining
 albums into a simpler format. Write code to test this function by calling it and logging the result. */
 
-//Async/await
+console.log(" ");
+console.log("-----------By using chain method------------");
+console.log(" ");
+
+function fetchAlbums()
+{
+    const url = 'https://jsonplaceholder.typicode.com/albums';
+
+    return fetch(url)
+        .then(response => {
+            if (!response.ok)
+            {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const albumsWithTitles = data.filter(album => album.title);
+
+            const simplifiedAlbums = albumsWithTitles.map(album => ({
+                id: album.id,
+                title: album.title
+            }));
+
+            return simplifiedAlbums;
+        })
+        .catch(error => {
+            console.error('Error fetching albums:', error);
+            return []; // Return empty array if  error
+        });
+}
+
+fetchAlbums()
+    .then(albums => {
+        console.log('Filtered and simplified albums:', albums);
+     })
+     .catch(error => {
+    console.error('Error:', error);
+    });
+
+/*
+console.log(" ");
+console.log("-----------By using async/await------------");
+console.log(" ");
+
 async function fetchAlbums()
 {
     const url = 'https://jsonplaceholder.typicode.com/albums';
@@ -34,42 +78,4 @@ fetchAlbums()
     })
     .catch(error => {
         console.error('Error:', error);
-    });
-
-
-//Chain is used without async/await
-function fetchAlbums()
-{
-    const url = 'https://jsonplaceholder.typicode.com/albums';
-
-    return fetch(url)
-        .then(response => {
-            if (!response.ok)
-            {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            const albumsWithTitles = data.filter(album => album.title);
-
-            const simplifiedAlbums = albumsWithTitles.map(album => ({
-                id: album.id,
-                title: album.title
-            }));
-
-            return simplifiedAlbums; // Resolve promise with simplified albums
-        })
-        .catch(error => {
-            console.error('Error fetching albums:', error);
-            return []; // Return empty array if  error
-        });
-}
-
-fetchAlbums()
-    .then(albums => {
-        console.log('Filtered and simplified albums:', albums);
-     })
-     .catch(error => {
-    console.error('Error:', error);
-    });
+    });*/
