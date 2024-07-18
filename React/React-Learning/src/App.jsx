@@ -6,6 +6,9 @@ import HomePage from "./components/HomePage";
 import UpdateData from "./components/UpdateData";
 import ContactInfo from "./components/ContactInfo";
 import Parent from "./components/Parent";
+import LoggedIn from "./components/LoggedIn";
+import NameList from "./components/NameList";
+import Header from "./components/Header";
 
 function Website() {
   const [count, setCount] = useState(0);
@@ -13,8 +16,13 @@ function Website() {
   return (
     <>
       <div>
+        <Header />
         {/* <HomePage/> */}
         <HomePage text={{ name: "Fatima" }} />
+        <LoggedIn />
+        <br />
+        <NameList />
+        <br />
         <UpdateData />
         <ContactInfo />
         <Parent />
@@ -24,4 +32,3 @@ function Website() {
 }
 
 export default Website;
-
