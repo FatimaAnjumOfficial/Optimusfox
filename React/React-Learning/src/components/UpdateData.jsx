@@ -1,12 +1,26 @@
-import React, { useState } from "react"; //1 hi line me different hooks use krskte hain {useState, useEffect}
+import React, { useState, useEffect } from "react";
 
 const UpdateData = () => {
-  //destructoring state
   const [data, setData] = useState("Lahore");
+  const [updateRequested, setUpdateRequested] = useState(false);
+
+  useEffect(() => {
+    if (updateRequested) {
+      const res = prompt("Do you update your location? y/n", "");
+      if (res === "y") {
+        setData("Karachi");
+      }
+      setUpdateRequested(false);
+    }
+  }, [updateRequested]);
+
+  const handleUpdate = () => {
+    setUpdateRequested(true);
+  };
 
   return (
     <div>
-      {data} <button onClick={() => setData("Karachi")}>Update Location</button>
+      {data} <button onClick={handleUpdate}>Update Location</button>
     </div>
   );
 };
