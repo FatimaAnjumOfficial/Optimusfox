@@ -1,0 +1,26 @@
+.timer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-family: Arial, sans-serif;
+}
+
+.time-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  width: 80px;
+}
+
+.time-value {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.time-label {
+  font-size: 1em;
+  color: #666;
+}
