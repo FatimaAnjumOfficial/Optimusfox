@@ -9,9 +9,15 @@ import Parent from "./components/Parent";
 import LoggedIn from "./components/LoggedIn";
 import NameList from "./components/NameList";
 import Header from "./components/Header";
+import Timer from "./components/Timer";
 
 function Website() {
   const [count, setCount] = useState(0);
+  const endDate = new Date();
+  endDate.setDate(endDate.getDate() + 12);
+  endDate.setHours(endDate.getHours() + 4);
+  endDate.setMinutes(endDate.getMinutes() + 56);
+  endDate.setSeconds(endDate.getSeconds() + 23);
 
   return (
     <>
@@ -19,6 +25,10 @@ function Website() {
         <Header />
         {/* <HomePage/> */}
         <HomePage text={{ name: "Fatima" }} />
+        <h2>Claim your reward Now!</h2>
+        <Timer endDate={endDate} />
+        {/*endDate is an JS `Date` object representing the target end time. It is a prop passed to the Timer component*/}
+        <br />
         <LoggedIn />
         <br />
         <NameList />
