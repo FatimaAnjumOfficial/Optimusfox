@@ -1,6 +1,9 @@
 import React from "react";
 import Counter from "./Counter";
 
+//eg. increment hr br +1 kr deta h (value change)
+//value same ho or button pe br br click kren gy tw rendering hogi.Pure Component br br rendoring nhi krta
+
 class PureComponent extends React.Component {
   constructor() {
     super();
