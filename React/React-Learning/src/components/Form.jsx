@@ -13,24 +13,30 @@ const Form = () => {
     const password = f.pswd.value;
     const confirmPassword = f.cpswd.value;
 
-    if (
-      !(
-        name === " " &&
-        email === " " &&
-        dob === " " &&
-        role === " " &&
-        password === " " &&
-        confirmPassword === " "
-      ) &&
-      password === confirmPassword
-    ) {
-      if (!emailValid.validity.valid) {
-        alert("Invalid Email");
+    try {
+      if (
+        !(
+          name === " " &&
+          email === " " &&
+          dob === " " &&
+          role === " " &&
+          password === " " &&
+          confirmPassword === " "
+        ) &&
+        password === confirmPassword
+      ) {
+        if (!emailValid.validity.valid) {
+          alert("Invalid Email");
+        } else {
+          alert(
+            "Name : ${name}, Email : ${email}, DOB : {dob},  Role : {role}"
+          );
+        }
       } else {
-        alert("Name : ${name}, Email : ${email}, DOB : {dob},  Role : {role}");
+        alert("Fill these blanks");
       }
-    } else {
-      alert("Fill these blanks");
+    } catch (error) {
+      alert(error);
     }
   };
 
