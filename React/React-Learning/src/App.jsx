@@ -10,6 +10,7 @@ import LoggedIn from "./components/LoggedIn";
 import NameList from "./components/NameList";
 import Header from "./components/Header";
 import Timer from "./components/Timer";
+import Form from "./components/Form";
 
 function Website() {
   const [count, setCount] = useState(0);
@@ -28,6 +29,8 @@ function Website() {
         <h2>Claim your reward Now!</h2>
         <Timer endDate={endDate} />
         {/*endDate is an JS `Date` object representing the target end time. It is a prop passed to the Timer component*/}
+        <br />
+        <Form />
         <br />
         <LoggedIn />
         <br />
