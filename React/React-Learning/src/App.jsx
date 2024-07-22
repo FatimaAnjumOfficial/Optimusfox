@@ -11,6 +11,7 @@ import NameList from "./components/NameList";
 import Header from "./components/Header";
 import Timer from "./components/Timer";
 import Form from "./components/Form";
+import PureComponent from "./components/PureComponent";
 
 function Website() {
   const [count, setCount] = useState(0);
@@ -31,6 +32,8 @@ function Website() {
         {/*endDate is an JS `Date` object representing the target end time. It is a prop passed to the Timer component*/}
         <br />
         <Form />
+        <br />
+        <PureComponent />
         <br />
         <LoggedIn />
         <br />
