@@ -21,6 +21,17 @@ function Website() {
   endDate.setMinutes(endDate.getMinutes() + 56);
   endDate.setSeconds(endDate.getSeconds() + 23);
 
+  const [title, setTitle] = useState("Title");
+  const [content, setContent] = useState("Content");
+
+  const changeTitle = () => {
+    setTitle("Fatima");
+  };
+
+  const changeContent = () => {
+    setContent("The IT Specialist");
+  };
+
   return (
     <>
       <div>
@@ -32,8 +43,10 @@ function Website() {
         {/*endDate is an JS `Date` object representing the target end time. It is a prop passed to the Timer component*/}
         <br />
         <Form />
+        <PureComponent title={title} content={content} />
+        <button onClick={changeTitle}>Change Title</button>{" "}
+        <button onClick={changeContent}>Change Content</button>
         <br />
-        <PureComponent />
         <br />
         <LoggedIn />
         <br />
