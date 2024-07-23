@@ -2,17 +2,19 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import HomePage from "./components/HomePage";
-import UpdateData from "./components/UpdateData";
+//import Counter from "./components/Counter";
 import ContactInfo from "./components/ContactInfo";
-import Parent from "./components/Parent";
-import LoggedIn from "./components/LoggedIn";
-import NameList from "./components/NameList";
-import Header from "./components/Header";
-import Timer from "./components/Timer";
 import Form from "./components/Form";
 import FormUseState from "./components/FormUseState";
+import Hoc from "./components/Hoc";
+import Header from "./components/Header";
+import HomePage from "./components/HomePage";
+import LoggedIn from "./components/LoggedIn";
+import NameList from "./components/NameList";
+import Parent from "./components/Parent";
 import PureComponent from "./components/PureComponent";
+import Timer from "./components/Timer";
+import UpdateData from "./components/UpdateData";
 
 function Website() {
   const [count, setCount] = useState(0);
@@ -42,6 +44,8 @@ function Website() {
         <h2>Claim your reward Now!</h2>
         <Timer endDate={endDate} />
         {/*endDate is an JS `Date` object representing the target end time. It is a prop passed to the Timer component*/}
+        <br />
+        <Hoc component={Counter} />
         <br />
         <FormUseState />
         <br />
