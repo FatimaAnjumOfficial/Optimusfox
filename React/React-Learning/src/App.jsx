@@ -11,6 +11,7 @@ import NameList from "./components/NameList";
 import Header from "./components/Header";
 import Timer from "./components/Timer";
 import Form from "./components/Form";
+import FormUseState from "./components/FormUseState";
 import PureComponent from "./components/PureComponent";
 
 function Website() {
@@ -41,6 +42,8 @@ function Website() {
         <h2>Claim your reward Now!</h2>
         <Timer endDate={endDate} />
         {/*endDate is an JS `Date` object representing the target end time. It is a prop passed to the Timer component*/}
+        <br />
+        <FormUseState />
         <br />
         <Form />
         <PureComponent title={title} content={content} />
