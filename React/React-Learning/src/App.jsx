@@ -48,11 +48,18 @@ function Website() {
     { id: 2, name: "Nimra", image: "" },
     {
       id: 3,
+      name: "Meher Bano",
+      image:
+        "https://i.pinimg.com/236x/c0/6e/f2/c06ef2d48b15504e2f00106207cf27d8.jpg",
+    },
+    {
+      id: 4,
       name: "Bisma",
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShssm8JONbJAkXBcgKCVqrws10SQvjs14HVg&s",
     },
-    { id: 4, name: "Meher Bano", image: "" },
+    { id: 5, name: "Kashmala", image: "" },
+    { id: 6, name: "Arisha", image: "" },
     // Add more participants as needed
   ];
 
