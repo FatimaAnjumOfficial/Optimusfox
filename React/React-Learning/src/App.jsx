@@ -2,11 +2,9 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-//import Counter from "./components/Counter";
 import ContactInfo from "./components/ContactInfo";
 import Form from "./components/Form";
 import FormUseState from "./components/FormUseState";
-import Hoc from "./components/Hoc";
 import Header from "./components/Header";
 import HomePage from "./components/HomePage";
 import LoggedIn from "./components/LoggedIn";
@@ -15,6 +13,7 @@ import Parent from "./components/Parent";
 import PureComponent from "./components/PureComponent";
 import Timer from "./components/Timer";
 import UpdateData from "./components/UpdateData";
+import WithCounterHoc from "./components/WithCounterHoc";
 
 function Website() {
   const [count, setCount] = useState(0);
@@ -45,7 +44,7 @@ function Website() {
         <Timer endDate={endDate} />
         {/*endDate is an JS `Date` object representing the target end time. It is a prop passed to the Timer component*/}
         <br />
-        <Hoc component={Counter} />
+        {/*<withCounterHoc component={Counter} />*/}
         <br />
         <FormUseState />
         <br />
@@ -54,6 +53,7 @@ function Website() {
         <button onClick={changeTitle}>Change Title</button>{" "}
         <button onClick={changeContent}>Change Content</button>
         <br />
+        <WithCounterHoc component={Counter} />
         <br />
         <LoggedIn />
         <br />
@@ -66,5 +66,22 @@ function Website() {
     </>
   );
 }
+
+const Counter = () => {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <h3>Count {count}</h3>
+      <button
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      >
+        Update Count
+      </button>
+    </div>
+  );
+};
 
 export default Website;
