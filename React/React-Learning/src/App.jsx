@@ -74,9 +74,9 @@ function Website() {
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPZCtDiZdpWPfnzRqqniuzDdFr0r6hF3i5VA&s",
     },
-    { id: 9, name: "Maham", image: "" },
+    { id: 11, name: "Maham", image: "" },
     {
-      id: 10,
+      id: 12,
       name: "Rano",
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK9gJACNLV5RJ5RC8Me7u3GRvAQ-w8DHNqNw&s",
