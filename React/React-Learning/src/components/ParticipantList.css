@@ -7,8 +7,9 @@
   display: flex; /*1 hi row me show krwane k liye*/
   flex-wrap: wrap; /*1 colum me display krwane k liye*/
   justify-content: center;
+  /*margin-right: 400px;*/
   gap: 20px; /*gap dene k liye*/
-  max-width: 1200px;
+  max-width: 800px;
   max-height: 400px;
   overflow-y: auto; /*sidebar lgane k liye*/
   border: 6px solid #0a0a0a; /*border ki line lga k moti krne k liye*/
