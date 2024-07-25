@@ -8,23 +8,24 @@
   flex-wrap: wrap; /*1 colum me display krwane k liye*/
   justify-content: center;
   gap: 20px; /*gap dene k liye*/
-  max-width: 1000px;
+  max-width: 1200px;
   max-height: 400px;
   overflow-y: auto; /*sidebar lgane k liye*/
-  border: 6px solid #0a0a0a;
-  padding: 20px;
+  border: 6px solid #0a0a0a; /*border ki line lga k moti krne k liye*/
+  border-radius: 10px; /*border k kinare gol krne k liye*/
+  padding: 20px; /*oper, neeche, ri8, left kinaro pe space dene k liye*/
 }
 
 .participant-card {
   width: 150px;
   height: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid #ccc;
+  display: flex; /*1 hi row me pic, name, fav icon */
+  flex-direction: column; /*column me display krwane k liye pic, name, fav icon*/
+  align-items: center; /*name, pic, fav icon ko centre me krde*/
+  border: 2px solid #ccc;
   border-radius: 8px;
   padding: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 9);
 }
 
 .participant-image {
