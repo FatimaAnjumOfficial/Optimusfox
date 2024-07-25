@@ -54,12 +54,33 @@ function Website() {
     },
     {
       id: 4,
-      name: "Bisma",
+      name: "Bisma Ijaz",
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShssm8JONbJAkXBcgKCVqrws10SQvjs14HVg&s",
     },
     { id: 5, name: "Kashmala", image: "" },
     { id: 6, name: "Arisha", image: "" },
+    {
+      id: 7,
+      name: "Yashal Binte Kasif",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_FUaBtYqZSsov2gHg1J5zuce-pQqnqJcYEA&s",
+    },
+    { id: 8, name: "Maryam Asmat", image: "" },
+    { id: 9, name: "Tooba", image: "" },
+    {
+      id: 10,
+      name: "Tina",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPZCtDiZdpWPfnzRqqniuzDdFr0r6hF3i5VA&s",
+    },
+    { id: 9, name: "Maham", image: "" },
+    {
+      id: 10,
+      name: "Rano",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK9gJACNLV5RJ5RC8Me7u3GRvAQ-w8DHNqNw&s",
+    },
     // Add more participants as needed
   ];
 
