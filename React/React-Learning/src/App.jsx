@@ -16,6 +16,7 @@ import UpdateData from "./components/UpdateData";
 import WithCounterHoc from "./components/WithCounterHoc";
 import ParticipantList from "./components/ParticipantList";
 import "./components/ParticipantList.css";
+import FavouriteUsers from "./components/FavouriteUsers";
 
 function Website() {
   {
@@ -81,14 +82,20 @@ function Website() {
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK9gJACNLV5RJ5RC8Me7u3GRvAQ-w8DHNqNw&s",
     },
-    // Add more participants as needed
   ];
 
   return (
     <>
       <div className="app-container">
-        <h1>Meeting Participants</h1>
-        <ParticipantList participants={participants} />
+        <div className="style">
+          <div>
+            <h1>Meeting Participants</h1>
+            <ParticipantList participants={participants} />
+          </div>
+          <div>
+            <FavouriteUsers />
+          </div>
+        </div>
 
         {/*<Header />
          <HomePage/> 
