@@ -1,5 +1,5 @@
 import React from "react";
-import Favourites from "./Favourites";
+import FavouriteButton from "./FavouriteButton";
 
 function Card({ participant }) {
   return (
@@ -17,7 +17,7 @@ function Card({ participant }) {
       )}
       <div className="participant-name">
         {participant.name}
-        <Favourites />
+        <FavouriteButton />
       </div>
     </div>
   );
