@@ -4,10 +4,15 @@
 }
 
 .participant-list {
-  display: flex;
-  flex-wrap: wrap;
+  display: flex; /*1 hi row me show krwane k liye*/
+  flex-wrap: wrap; /*1 colum me display krwane k liye*/
   justify-content: center;
-  gap: 20px;
+  gap: 20px; /*gap dene k liye*/
+  max-width: 1000px;
+  max-height: 400px;
+  overflow-y: auto; /*sidebar lgane k liye*/
+  border: 6px solid #0a0a0a;
+  padding: 20px;
 }
 
 .participant-card {
