@@ -1,24 +1,12 @@
 import React from "react";
+import Card from "./Card";
 import PropTypes from "prop-types"; // to check the type of props
 
 const ParticipantList = ({ participants }) => {
   return (
     <div className="participant-list">
       {participants.map((participant) => (
-        <div key={participant.id} className="participant-card">
-          {participant.image ? (
-            <img
-              src={participant.image}
-              alt={participant.name}
-              className="participant-image"
-            />
-          ) : (
-            <div className="participant-placeholder">
-              {participant.name.charAt(0).toUpperCase()}
-            </div>
-          )}
-          <div className="participant-name">{participant.name}</div>
-        </div>
+        <Card participant={participant} />
       ))}
     </div>
   );
