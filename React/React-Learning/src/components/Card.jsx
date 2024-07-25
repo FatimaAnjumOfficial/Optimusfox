@@ -1,4 +1,5 @@
 import React from "react";
+import Favourites from "./Favourites";
 
 function Card({ participant }) {
   return (
@@ -14,7 +15,10 @@ function Card({ participant }) {
           {participant.name.charAt(0).toUpperCase()}
         </div>
       )}
-      <div className="participant-name">{participant.name}</div>
+      <div className="participant-name">
+        {participant.name}
+        <Favourites />
+      </div>
     </div>
   );
 }
