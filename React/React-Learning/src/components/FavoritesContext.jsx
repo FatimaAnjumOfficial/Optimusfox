@@ -7,13 +7,11 @@ export const useFavorites = () => {
 };
 
 export const FavoritesProvider = ({ children }) => {
-  // Initialize favorites from localStorage or default to an empty array
   const [favorites, setFavorites] = useState(() => {
     const savedFavorites = localStorage.getItem("favorites");
     return savedFavorites ? JSON.parse(savedFavorites) : [];
   });
 
-  // Update localStorage whenever favorites change
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
