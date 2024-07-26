@@ -1,4 +1,16 @@
 import React from "react";
+import ContactInfo from "./components/ContactInfo";
+import Form from "./components/Form";
+import FormUseState from "./components/FormUseState";
+import Header from "./components/Header";
+import HomePage from "./components/HomePage";
+import LoggedIn from "./components/LoggedIn";
+import NameList from "./components/NameList";
+import Parent from "./components/Parent";
+import PureComponent from "./components/PureComponent";
+import Timer from "./components/Timer";
+import UpdateData from "./components/UpdateData";
+import WithCounterHoc from "./components/WithCounterHoc";
 import ParticipantList from "./components/ParticipantList";
 import FavoritesList from "./components/FavoritesList";
 
