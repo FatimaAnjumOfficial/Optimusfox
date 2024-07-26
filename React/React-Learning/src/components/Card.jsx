@@ -1,7 +1,11 @@
 import React from "react";
 import FavouriteButton from "./FavouriteButton";
+import { useFavorites } from "./FavoritesContext";
 
 function Card({ participant }) {
+  const { favorites } = useFavorites();
+  const isFavorite = favorites.some((fav) => fav.id === participant.id);
+
   return (
     <div key={participant.id} className="participant-card">
       {participant.image ? (
@@ -17,7 +21,8 @@ function Card({ participant }) {
       )}
       <div className="participant-name">
         {participant.name}
-        <FavouriteButton />
+        <br />
+        <FavouriteButton participant={participant} isFavorite={isFavorite} />
       </div>
     </div>
   );
