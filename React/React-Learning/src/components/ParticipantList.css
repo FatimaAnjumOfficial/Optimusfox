@@ -55,3 +55,9 @@
   font-size: 16px;
   font-weight: bold;
 }
+
+.fav-participant-card {
+  display: flex; /*1 hi row me pic, name, fav icon */
+  flex-direction: column; /*column me display krwane k liye pic, name, fav icon*/
+  align-items: center; /*name, pic, fav icon ko centre me krde*/
+}
