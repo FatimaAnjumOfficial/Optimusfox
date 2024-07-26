@@ -21,7 +21,6 @@ function Card({ participant }) {
       )}
       <div className="participant-name">
         {participant.name}
-        <br />
         <FavouriteButton participant={participant} isFavorite={isFavorite} />
       </div>
     </div>
