@@ -32,8 +32,7 @@ function Display() {
 
   const changeContent = () => {
     setContent("The IT Specialist");
-  };*/
-  }
+  };
 
   const participants = [
     {
@@ -79,12 +78,13 @@ function Display() {
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK9gJACNLV5RJ5RC8Me7u3GRvAQ-w8DHNqNw&s",
     },
   ];
-
+*/
+  }
   return (
     <div className="style">
       <div>
         <h1>Meeting Participants</h1>
-        <ParticipantList participants={participants} />
+        <ParticipantList />
       </div>
       <div>
         <h1>Favourite Participants</h1>
