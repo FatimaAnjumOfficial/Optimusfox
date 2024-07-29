@@ -3,7 +3,7 @@ import axios from "axios";
 import NFTCard from "./NFTCard";
 import "./styles.css";
 
-const HomePage = () => {
+const Home = () => {
   const [nfts, setNfts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -36,5 +36,5 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Home;
 
