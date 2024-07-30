@@ -1,0 +1,17 @@
+.nft-container {
+  display: flex; /*1 hi row me show krwane k liye*/
+  flex-wrap: wrap; /*1 colum me display krwane k liye*/
+  justify-content: center;
+  /*margin-right: 400px;*/
+  gap: 20px; /*gap dene k liye*/
+  max-width: 4000px;
+  max-height: 1000px;
+  padding: 20px; /*oper, neeche, ri8, left kinaro pe space dene k liye*/
+}
+
+.nft-container p {
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+  margin-top: 20px;
+}
