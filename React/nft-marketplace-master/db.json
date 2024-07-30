@@ -29,7 +29,7 @@
       "title": "Meebits",
       "rank": "Meebits #77",
       "author": "Author 4",
-      "price_eth": 2.0,
+      "price_eth": 2,
       "price_usd": 4800
     },
     {
@@ -39,6 +39,15 @@
       "author": "Author 5",
       "price_eth": 1.2,
       "price_usd": 2880
+    },
+    {
+      "id": "83d4",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_SuHzyB2Wd2lkzV_oKwXC2L72Gkt4_EuzgA&s",
+      "title": "Barbie",
+      "rank": "Barbie #019",
+      "author": "Author 9",
+      "price_eth": "3.9",
+      "price_usd": "5000"
     }
   ]
 }
