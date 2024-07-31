@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import axios from "axios"; // Import axios for making HTTP requests
 import "./StylishButton.css";
 
-function AddButton() {
+function AddButton({ setNfts }) {
   const [showModal, setShowModal] = useState(false);
   const [newNft, setNewNft] = useState({
     image: "",
@@ -11,6 +12,7 @@ function AddButton() {
     price_eth: "",
     price_usd: "",
   });
+  const [error, setError] = useState("");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -33,6 +35,8 @@ function AddButton() {
         price_usd: "",
       });
       setShowModal(false);
+
+      // Fetch updated NFTs from the server and update state
       const response = await axios.get("http://localhost:4000/nfts");
       setNfts(response.data);
     } catch (error) {
@@ -52,6 +56,7 @@ function AddButton() {
               &times;
             </span>
             <h2>Add New NFT</h2>
+            {error && <p className="error">{error}</p>}
             <form onSubmit={handleSubmit}>
               <label>
                 Image URL:
