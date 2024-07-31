@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./StylishButton.css";
 
-function Button({ setNfts }) {
+function AddButton({ setNfts }) {
   const [showModal, setShowModal] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
   const [newNft, setNewNft] = useState({
     image: "",
     title: "",
@@ -14,7 +13,8 @@ function Button({ setNfts }) {
     price_usd: "",
   });
   const [error, setError] = useState("");
-  const [idToEdit, setIdToEdit] = useState("");
+  const [editMode, setEditMode] = useState(false);
+  const [editId, setEditId] = useState("");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -24,23 +24,11 @@ function Button({ setNfts }) {
     }));
   };
 
-  const handleFetchNft = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:4000/nfts/${idToEdit}`
-      );
-      setNewNft(response.data);
-      setIsEditing(true);
-    } catch (error) {
-      setError("Failed to fetch NFT data.");
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (isEditing) {
-        await axios.put(`http://localhost:4000/nfts/${idToEdit}`, newNft);
+      if (editMode) {
+        await axios.put(`http://localhost:4000/nfts/${editId}`, newNft);
       } else {
         await axios.post("http://localhost:4000/nfts", newNft);
       }
@@ -54,13 +42,38 @@ function Button({ setNfts }) {
         price_usd: "",
       });
       setShowModal(false);
-      setIsEditing(false);
-      setIdToEdit("");
+      setEditMode(false);
+      setEditId("");
 
       const response = await axios.get("http://localhost:4000/nfts");
       setNfts(response.data);
     } catch (error) {
-      setError("Failed to save NFT.");
+      setError("Failed to process request.");
+    }
+  };
+
+  const handleEdit = async () => {
+    try {
+      const response = await axios.get(`http://localhost:4000/nfts/${editId}`);
+      setNewNft(response.data);
+      setEditMode(true);
+      setShowModal(true);
+    } catch (error) {
+      setError("Failed to fetch NFT.");
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:4000/nfts/${editId}`);
+      setEditMode(false);
+      setEditId("");
+      setShowModal(false);
+
+      const response = await axios.get("http://localhost:4000/nfts");
+      setNfts(response.data);
+    } catch (error) {
+      setError("Failed to delete NFT.");
     }
   };
 
@@ -69,14 +82,17 @@ function Button({ setNfts }) {
       <button onClick={() => setShowModal(true)} className="stylish-button">
         Add NFT
       </button>
-      <button
-        onClick={() => {
-          setShowModal(true);
-          setIsEditing(true);
-        }}
-        className="stylish-button"
-      >
+      <input
+        type="text"
+        placeholder="Enter NFT ID for Edit/Delete"
+        value={editId}
+        onChange={(e) => setEditId(e.target.value)}
+      />
+      <button onClick={handleEdit} className="stylish-button">
         Edit NFT
+      </button>
+      <button onClick={handleDelete} className="stylish-button">
+        Delete NFT
       </button>
       {showModal && (
         <div className="modal">
@@ -84,29 +100,8 @@ function Button({ setNfts }) {
             <span className="close" onClick={() => setShowModal(false)}>
               &times;
             </span>
-            <h2>{isEditing ? "Edit NFT" : "Add New NFT"}</h2>
+            <h2>{editMode ? "Edit NFT" : "Add New NFT"}</h2>
             {error && <p className="error">{error}</p>}
-            {isEditing && (
-              <div>
-                <label>
-                  NFT ID:
-                  <input
-                    type="text"
-                    value={idToEdit}
-                    onChange={(e) => setIdToEdit(e.target.value)}
-                  />
-                  <br />
-                  <br />
-                  <button
-                    type="button"
-                    onClick={handleFetchNft}
-                    className="fetch-button"
-                  >
-                    Fetch Data
-                  </button>
-                </label>
-              </div>
-            )}
             <form onSubmit={handleSubmit}>
               <label>
                 Image URL:
@@ -171,7 +166,7 @@ function Button({ setNfts }) {
                 />
               </label>
               <button type="submit" className="submit-button">
-                {isEditing ? "Update" : "Submit"}
+                {editMode ? "Update" : "Submit"}
               </button>
             </form>
           </div>
@@ -181,4 +176,4 @@ function Button({ setNfts }) {
   );
 }
 
-export default Button;
+export default AddButton;
