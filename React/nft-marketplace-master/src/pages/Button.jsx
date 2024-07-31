@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./StylishButton.css";
 
-function AddButton({ setNfts }) {
+function Button({ setNfts }) {
   const [showModal, setShowModal] = useState(false);
   const [newNft, setNewNft] = useState({
     image: "",
@@ -79,22 +79,36 @@ function AddButton({ setNfts }) {
 
   return (
     <div className="button-container">
-      <button onClick={() => setShowModal(true)} className="stylish-button">
-        Add NFT
-      </button>
-      <input
-        type="text"
-        placeholder="Enter NFT ID for Edit/Delete"
-        value={editId}
-        style={{ color: "black" }}
-        onChange={(e) => setEditId(e.target.value)}
-      />
-      <button onClick={handleEdit} className="stylish-button">
-        Edit NFT
-      </button>
-      <button onClick={handleDelete} className="stylish-button">
-        Delete NFT
-      </button>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <div>
+          <button onClick={() => setShowModal(true)} className="stylish-button">
+            Add NFT
+          </button>
+        </div>
+        <div style={{ display: "flex", padding: "10px" }}>
+          <input
+            type="text"
+            placeholder="NFT ID for Edit/Delete"
+            value={editId}
+            style={{ color: "black", padding: "5px 20px", fontSize: "10" }}
+            onChange={(e) => setEditId(e.target.value)}
+          />
+        </div>
+        <div>
+          <button onClick={handleEdit} className="stylish-button">
+            Edit NFT
+          </button>
+          <button onClick={handleDelete} className="stylish-button">
+            Delete NFT
+          </button>
+        </div>
+      </div>
       {showModal && (
         <div className="modal">
           <div className="modal-content">
@@ -177,4 +191,4 @@ function AddButton({ setNfts }) {
   );
 }
 
-export default AddButton;
+export default Button;
