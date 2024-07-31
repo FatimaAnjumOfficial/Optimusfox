@@ -86,6 +86,7 @@ function AddButton({ setNfts }) {
         type="text"
         placeholder="Enter NFT ID for Edit/Delete"
         value={editId}
+        style={{ color: "black" }}
         onChange={(e) => setEditId(e.target.value)}
       />
       <button onClick={handleEdit} className="stylish-button">
