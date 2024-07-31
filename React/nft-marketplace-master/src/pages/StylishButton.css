@@ -20,6 +20,26 @@
 }
 
 .stylish-button:hover {
-  background-color: #4a148c; /* Darker shade on hover */
+  background-color: #4a148c;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.fetch-button {
+  background-color: #239640;
+  color: white;
+  border: none;
+  border-radius: 80px;
+  padding: 10px 20px;
+  font-size: 12.5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  margin-left: 10px;
+}
+
+.fetch-button:hover {
+  background-color: #1a6e2f;
+}
+
+.fetch-button:active {
+  transform: scale(0.98);
 }
