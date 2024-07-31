@@ -79,34 +79,47 @@ function Button({ setNfts }) {
 
   return (
     <div className="button-container">
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <div>
-          <button onClick={() => setShowModal(true)} className="stylish-button">
-            Add NFT
-          </button>
-        </div>
-        <div style={{ display: "flex", padding: "10px" }}>
-          <input
-            type="text"
-            placeholder="NFT ID for Edit/Delete"
-            value={editId}
-            style={{ color: "black", padding: "5px 20px", fontSize: "10" }}
-            onChange={(e) => setEditId(e.target.value)}
-          />
-        </div>
-        <div>
-          <button onClick={handleEdit} className="stylish-button">
-            Edit NFT
-          </button>
-          <button onClick={handleDelete} className="stylish-button">
-            Delete NFT
-          </button>
+      <div style={{ display: "flex" }}>
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuD3nlwGffp7e-aIdeh92UfI1nncoJCFvHwg&s"
+          alt="NFT Image"
+        />
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_bjpc7OoeVbMyi45g53Afh1wXYpomMo1wdsRu0n0rKbnHYmSqptg4lJcaJabE4MlSsJE&usqp=CAU"
+          alt="NFT Image"
+        />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <div>
+            <button
+              onClick={() => setShowModal(true)}
+              className="stylish-button"
+            >
+              Add NFT
+            </button>
+          </div>
+          <div style={{ display: "flex", padding: "10px" }}>
+            <input
+              type="text"
+              placeholder="NFT ID for Edit/Delete"
+              value={editId}
+              style={{ color: "black", padding: "5px 20px", fontSize: "10" }}
+              onChange={(e) => setEditId(e.target.value)}
+            />
+          </div>
+          <div>
+            <button onClick={handleEdit} className="stylish-button">
+              Edit NFT
+            </button>
+            <button onClick={handleDelete} className="stylish-button">
+              Delete NFT
+            </button>
+          </div>
         </div>
       </div>
       {showModal && (
