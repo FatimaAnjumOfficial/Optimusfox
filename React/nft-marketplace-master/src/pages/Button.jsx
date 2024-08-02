@@ -29,7 +29,7 @@ function Button({ setNfts }) {
 
     if (file) {
       const formData = new FormData();
-      formData.append("image", file);
+      formData.append("image", file); //add key/value pairs to the FormData Object.  Each key/value pair corresponds to a field in the form data
 
       try {
         await axios.post("http://localhost:4000/nfts", formData, {
@@ -37,21 +37,23 @@ function Button({ setNfts }) {
             "Content-Type": "multipart/form-data",
           },
         });
-        console.log("File uploaded successfully");
+        console.log("Image File uploaded successfully");
 
         const response = await axios.get("http://localhost:4000/nfts");
         setNfts(response.data);
       } catch (error) {
-        console.error("Error uploading file", error);
+        console.error("Error uploading image file", error);
       }
-      const reader = new FileReader();
+
+      const reader = new FileReader(); //to read the contents of files (such as images)
       reader.onloadend = () => {
+        //onloadend event is used to handle actions after the reading process has finished.
         setNewNft((prevNft) => ({
-          ...prevNft,
-          image: reader.result, // stores the image data URL
+          ...prevNft, //spread operator. It copies all the existing properties of the previous state (prevNft) into the new state object.
+          image: reader.result, // stores the image data URL. This allows you to display or use the image data in your application.
         }));
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file); //file ko url me convert krdeta h
     }
   };
 
