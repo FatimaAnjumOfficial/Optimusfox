@@ -27,6 +27,9 @@ function Button({ setNfts }) {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      const formData = new FormData();
+      formData.append("image", file);
+
       const reader = new FileReader();
       reader.onloadend = () => {
         setNewNft((prevNft) => ({
