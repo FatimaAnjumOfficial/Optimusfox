@@ -24,6 +24,20 @@ function Button({ setNfts }) {
     }));
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setNewNft((prevNft) => ({
+          ...prevNft,
+          image: reader.result,
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -132,13 +146,12 @@ function Button({ setNfts }) {
             {error && <p className="error">{error}</p>}
             <form onSubmit={handleSubmit}>
               <label>
-                Image URL:
+                Image:
                 <input
-                  type="text"
+                  type="file"
                   name="image"
-                  value={newNft.image}
-                  onChange={handleInputChange}
-                  required
+                  accept="image/*"
+                  onChange={handleFileChange}
                 />
               </label>
               <label>
