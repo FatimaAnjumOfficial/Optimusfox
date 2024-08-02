@@ -24,17 +24,31 @@ function Button({ setNfts }) {
     }));
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     const file = e.target.files[0];
+
     if (file) {
       const formData = new FormData();
       formData.append("image", file);
 
+      try {
+        await axios.post("http://localhost:4000/nfts", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        console.log("File uploaded successfully");
+
+        const response = await axios.get("http://localhost:4000/nfts");
+        setNfts(response.data);
+      } catch (error) {
+        console.error("Error uploading file", error);
+      }
       const reader = new FileReader();
       reader.onloadend = () => {
         setNewNft((prevNft) => ({
           ...prevNft,
-          image: reader.result,
+          image: reader.result, // stores the image data URL
         }));
       };
       reader.readAsDataURL(file);
