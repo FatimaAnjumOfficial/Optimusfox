@@ -94,14 +94,6 @@ function Button({ setNfts }) {
   return (
     <div className="button-container">
       <div style={{ display: "flex" }}>
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuD3nlwGffp7e-aIdeh92UfI1nncoJCFvHwg&s"
-          alt="NFT Image"
-        />
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_bjpc7OoeVbMyi45g53Afh1wXYpomMo1wdsRu0n0rKbnHYmSqptg4lJcaJabE4MlSsJE&usqp=CAU"
-          alt="NFT Image"
-        />
         <div
           style={{
             display: "flex",
