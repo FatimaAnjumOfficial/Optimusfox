@@ -67,9 +67,6 @@ const Search = () => {
 
   return (
     <div>
-      <h1 className="text-lg md:text-[35px] font-semibold text-center ">
-        Search
-      </h1>
       <br />
       <div className="flex px-600">
         <input
