@@ -68,7 +68,7 @@ const Search = () => {
   return (
     <div>
       <br />
-      <div className="flex px-600">
+      <div className="flex px-600 gap-2">
         <input
           type="text"
           value={searchTerm}
