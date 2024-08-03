@@ -14,7 +14,7 @@ export function MarketPlaceSubmenu() {
           <Search />
         </div>
         <br />
-        <div className="flex gap-3">
+        <div className="flex gap-4">
           <SharedButton
             className="md:flex hidden gap-2.5 rounded-xl px-[50px]  bg-secondary-danger items-center"
             variant="ghost"
