@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./StylishButton.css";
-import Search from "./Search";
+//import Search from "./Search";
 
 function Button({ setNfts }) {
   const [showModal, setShowModal] = useState(false);
@@ -135,7 +135,11 @@ function Button({ setNfts }) {
                 type="text"
                 placeholder="NFT ID for Edit/Delete"
                 value={editId}
-                style={{ color: "black", padding: "5px 20px", fontSize: "10" }}
+                style={{
+                  color: "black",
+                  padding: "5px 20px",
+                  fontSize: "10",
+                }}
                 onChange={(e) => setEditId(e.target.value)}
               />
             </div>
