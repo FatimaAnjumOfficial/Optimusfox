@@ -67,8 +67,9 @@ const Search = () => {
 
   return (
     <div>
-      <br />
-      <h1 className="text-lg md:text-[35px] font-bold text-center ">Search</h1>
+      <h1 className="text-lg md:text-[35px] font-semibold text-center ">
+        Search
+      </h1>
       <br />
       <div className="flex px-600">
         <input
