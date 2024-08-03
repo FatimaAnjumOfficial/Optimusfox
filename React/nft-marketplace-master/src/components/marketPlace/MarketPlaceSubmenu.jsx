@@ -21,39 +21,45 @@ export function MarketPlaceSubmenu() {
         </div>
         <br />
         {/*<div style={{ marginLeft: "548px" }}>*/}
-        <div className="flex gap-4">
-          <SharedButton
-            className="md:flex hidden gap-2.5 rounded-xl px-[50px]  bg-secondary-danger items-center"
-            variant="ghost"
-          >
-            <Image />
-            <span>NFT</span>
-            <Cross />
-          </SharedButton>
-          <SharedButton
-            className="md:flex hidden gap-2.5 rounded-xl px-[50px] bg-zinc-800 items-center min-w-max"
-            variant="ghost"
-          >
-            <Discount />
-            <span>Discount Codes</span>
-          </SharedButton>
+        <div className="flex gap-11">
+          <div className="flex gap-5">
+            <SharedButton
+              className="md:flex hidden gap-2.5 rounded-xl px-[50px]  bg-secondary-danger items-center"
+              variant="ghost"
+            >
+              <Image />
+              <span>NFT</span>
+              <Cross />
+            </SharedButton>
+            <SharedButton
+              className="md:flex hidden gap-2.5 rounded-xl px-[50px] bg-zinc-800 items-center min-w-max"
+              variant="ghost"
+            >
+              <Discount />
+              <span>Discount Codes</span>
+            </SharedButton>
 
-          <SharedButton
-            className="xl:flex hidden gap-2.5 rounded-xl px-[50px] bg-zinc-800 items-center  min-w-max"
-            variant="ghost"
-          >
-            <Hand />
-            <span>Physical Items</span>
-          </SharedButton>
-          <SharedButton
-            className="xl:flex hidden gap-2.5 rounded-xl px-[50px] bg-zinc-800 items-center  min-w-max"
-            variant="ghost"
-          >
-            <Diamond />
-            <span>Perks</span>
-          </SharedButton>
+            <SharedButton
+              className="xl:flex hidden gap-2.5 rounded-xl px-[50px] bg-zinc-800 items-center  min-w-max"
+              variant="ghost"
+            >
+              <Hand />
+              <span>Physical Items</span>
+            </SharedButton>
+            <SharedButton
+              className="xl:flex hidden gap-2.5 rounded-xl px-[50px] bg-zinc-800 items-center  min-w-max"
+              variant="ghost"
+            >
+              <Diamond />
+              <span>Perks</span>
+            </SharedButton>
+          </div>
+          <div>
+            <Button />
+          </div>
         </div>
       </div>
+      <br />
       {/*</div>*/}
     </>
   );
