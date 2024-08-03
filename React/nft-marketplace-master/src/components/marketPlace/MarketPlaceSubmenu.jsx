@@ -7,10 +7,16 @@ import Button from "../../pages/Button";
 export function MarketPlaceSubmenu() {
   return (
     <>
+      <br />
+      <h1 className="text-lg md:text-[35px] font-semibold text-center ">
+        Search
+      </h1>
       <div>
+        {/*<div>
+          <Search />
+        <input type="search" placeholder="Search" className="bg-zinc-800" />
+        </div>*/}
         <div>
-          {/*<Search />
-        <input type="search" placeholder="Search" className="bg-zinc-800" />*/}
           <Search />
         </div>
         <br />
@@ -46,7 +52,6 @@ export function MarketPlaceSubmenu() {
             <Diamond />
             <span>Perks</span>
           </SharedButton>
-          <Button />
         </div>
       </div>
       {/*</div>*/}
