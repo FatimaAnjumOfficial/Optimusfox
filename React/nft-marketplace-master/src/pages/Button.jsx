@@ -113,45 +113,30 @@ function Button({ setNfts }) {
 
   return (
     <>
-      <div className="button-container">
-        <div style={{ display: "flex" }}>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <div>
-              <button
-                onClick={() => setShowModal(true)}
-                className="stylish-button"
-              >
-                Add NFT
-              </button>
-            </div>
-            <div style={{ display: "flex", padding: "10px" }}>
-              <input
-                type="text"
-                placeholder="NFT ID for Edit/Delete"
-                value={editId}
-                style={{
-                  color: "black",
-                  padding: "5px 20px",
-                  fontSize: "10",
-                }}
-                onChange={(e) => setEditId(e.target.value)}
-              />
-            </div>
-            <div>
-              <button onClick={handleEdit} className="stylish-button">
-                Edit NFT
-              </button>
-              <button onClick={handleDelete} className="stylish-button">
-                Delete NFT
-              </button>
-            </div>
+      <div>
+        <div style={{ display: "flex", gap: "7px", marginLeft: "175px" }}>
+          <button onClick={() => setShowModal(true)} className="stylish-button">
+            Add NFT
+          </button>
+          <div style={{ display: "flex", padding: "10px" }}>
+            <input
+              type="text"
+              placeholder="NFT ID for Edit/Delete"
+              value={editId}
+              style={{
+                color: "black",
+                padding: "5px 20px",
+                fontSize: "10",
+              }}
+              onChange={(e) => setEditId(e.target.value)}
+            />
           </div>
+          <button onClick={handleEdit} className="stylish-button">
+            Edit NFT
+          </button>
+          <button onClick={handleDelete} className="stylish-button">
+            Delete NFT
+          </button>
         </div>
         {showModal && (
           <div className="modal">
