@@ -1,238 +1,106 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import _ from "lodash";
 import "./StylishButton.css";
-//import Search from "./Search";
+import "./Styles.css";
+//import SearchIcon from "./SearchIcon.png";
 
-function Button({ setNfts }) {
-  const [showModal, setShowModal] = useState(false);
-  const [newNft, setNewNft] = useState({
-    image: "",
-    title: "",
-    rank: "",
-    author: "",
-    price_eth: "",
-    price_usd: "",
-  });
-  const [error, setError] = useState("");
-  const [editMode, setEditMode] = useState(false);
-  const [editId, setEditId] = useState("");
+const Search = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [triggerSearch, setTriggerSearch] = useState(false);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewNft((prevNft) => ({
-      ...prevNft,
-      [name]: value,
-    }));
-  };
-
-  const handleFileChange = async (e) => {
-    const file = e.target.files[0];
-
-    if (file) {
-      const formData = new FormData();
-      formData.append("image", file); //add key/value pairs to the FormData Object.  Each key/value pair corresponds to a field in the form data
-
-      try {
-        await axios.post("http://localhost:4000/nfts", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-        console.log("Image File uploaded successfully");
-
-        const response = await axios.get("http://localhost:4000/nfts");
-        setNfts(response.data);
-      } catch (error) {
-        console.error("Error uploading image file", error);
-      }
-
-      const reader = new FileReader(); //to read the contents of files (such as images)
-      reader.onloadend = () => {
-        //onloadend event is used to handle actions after the reading process has finished.
-        setNewNft((prevNft) => ({
-          ...prevNft, //spread operator. It copies all the existing properties of the previous state (prevNft) into the new state object.
-          image: reader.result, // stores the image data URL. This allows you to display or use the image data in your application.
-        }));
-      };
-      reader.readAsDataURL(file); //file ko url me convert krdeta h
+  const fetchData = async (query) => {
+    setLoading(true);
+    try {
+      const response = await axios.get("http://localhost:4000/nfts");
+      const filteredData = response.data.filter(
+        (item) =>
+          item.title.toLowerCase().includes(query.toLowerCase()) ||
+          item.rank.toLowerCase().includes(query.toLowerCase()) ||
+          item.imageURL.toLowerCase().includes(query.toLowerCase())
+      );
+      setResults(filteredData);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      if (editMode) {
-        await axios.put(`http://localhost:4000/nfts/${editId}`, newNft);
+  // Debounce function to delay search input handling
+  const debouncedFetchData = _.debounce(fetchData, 500);
+
+  // Effect to handle search term changes
+  useEffect(() => {
+    if (triggerSearch) {
+      if (searchTerm) {
+        debouncedFetchData(searchTerm);
+        setIsDropdownOpen(true);
       } else {
-        await axios.post("http://localhost:4000/nfts", newNft);
+        setResults([]);
+        setIsDropdownOpen(false);
       }
+      setTriggerSearch(false);
+    }
+  }, [searchTerm, triggerSearch]);
 
-      setNewNft({
-        image: "",
-        title: "",
-        rank: "",
-        author: "",
-        price_eth: "",
-        price_usd: "",
-      });
-      setShowModal(false);
-      setEditMode(false);
-      setEditId("");
-
-      const response = await axios.get("http://localhost:4000/nfts");
-      setNfts(response.data);
-    } catch (error) {
-      setError("Failed to process request.");
+  // Handle clicking outside of dropdown to close it
+  const handleClickOutside = (e) => {
+    if (!e.target.closest(".dropdown")) {
+      setIsDropdownOpen(false);
     }
   };
 
-  const handleEdit = async () => {
-    try {
-      const response = await axios.get(`http://localhost:4000/nfts/${editId}`);
-      setNewNft(response.data);
-      setEditMode(true);
-      setShowModal(true);
-    } catch (error) {
-      setError("Failed to fetch NFT.");
-    }
-  };
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
-  const handleDelete = async () => {
-    try {
-      await axios.delete(`http://localhost:4000/nfts/${editId}`);
-      setEditMode(false);
-      setEditId("");
-      setShowModal(false);
-
-      const response = await axios.get("http://localhost:4000/nfts");
-      setNfts(response.data);
-    } catch (error) {
-      setError("Failed to delete NFT.");
-    }
+  const handleSearchClick = () => {
+    setTriggerSearch(true);
   };
 
   return (
-    <>
-      <div className="button-container">
-        <div style={{ display: "flex" }}>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <div>
-              <button
-                onClick={() => setShowModal(true)}
-                className="stylish-button"
-              >
-                Add NFT
-              </button>
-            </div>
-            <div style={{ display: "flex", padding: "10px" }}>
-              <input
-                type="text"
-                placeholder="NFT ID for Edit/Delete"
-                value={editId}
-                style={{
-                  color: "black",
-                  padding: "5px 20px",
-                  fontSize: "10",
-                }}
-                onChange={(e) => setEditId(e.target.value)}
-              />
-            </div>
-            <div>
-              <button onClick={handleEdit} className="stylish-button">
-                Edit NFT
-              </button>
-              <button onClick={handleDelete} className="stylish-button">
-                Delete NFT
-              </button>
-            </div>
-          </div>
-        </div>
-        {showModal && (
-          <div className="modal">
-            <div className="modal-content">
-              <span className="close" onClick={() => setShowModal(false)}>
-                &times;
-              </span>
-              <h2>{editMode ? "Edit NFT" : "Add New NFT"}</h2>
-              {error && <p className="error">{error}</p>}
-              <form onSubmit={handleSubmit}>
-                <label>
-                  Image:
-                  <input
-                    type="file"
-                    name="image"
-                    accept="image/*"
-                    onChange={handleFileChange}
-                  />
-                </label>
-                <label>
-                  Title:
-                  <input
-                    type="text"
-                    name="title"
-                    value={newNft.title}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </label>
-                <label>
-                  Rank:
-                  <input
-                    type="text"
-                    name="rank"
-                    value={newNft.rank}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </label>
-                <label>
-                  Author:
-                  <input
-                    type="text"
-                    name="author"
-                    value={newNft.author}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </label>
-                <label>
-                  Price (ETH):
-                  <input
-                    type="number"
-                    step="0.01"
-                    name="price_eth"
-                    value={newNft.price_eth}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </label>
-                <label>
-                  Price (USD):
-                  <input
-                    type="number"
-                    step="0.01"
-                    name="price_usd"
-                    value={newNft.price_usd}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </label>
-                <button type="submit" className="submit-button">
-                  {editMode ? "Update" : "Submit"}
-                </button>
-              </form>
-            </div>
-          </div>
-        )}
+    <div>
+      <br />
+      <div className="flex px-600">
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Search NFTs..."
+          className="style"
+        />
+        <button
+          onClick={handleSearchClick}
+          disabled={loading}
+          className="stylish-button"
+        >
+          Search {/*<img src={SearchIcon} alt="Description" />*/}
+        </button>
       </div>
-    </>
+      {loading && <p>Loading...</p>}
+      {isDropdownOpen && results.length > 0 && (
+        <div className="dropdown-menu">
+          <ul>
+            {results.map((item) => (
+              <li key={item.id}>
+                <img src={item.imageURL} alt={item.title} width="50" />
+                <div>{item.title}</div>
+                <div>Rank: {item.rank}</div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {isDropdownOpen && results.length === 0 && <p>No results found</p>}
+    </div>
   );
-}
+};
 
-export default Button;
+export default Search;
