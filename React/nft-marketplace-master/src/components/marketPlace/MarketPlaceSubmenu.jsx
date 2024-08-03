@@ -38,13 +38,13 @@ export function MarketPlaceSubmenu() {
             <Hand />
             <span>Physical Items</span>
           </SharedButton>
-          <Button
+          <SharedButton
             className="xl:flex hidden gap-2.5 rounded-xl px-[50px] bg-zinc-800 items-center  min-w-max"
             variant="ghost"
           >
             <Diamond />
             <span>Perks</span>
-          </Button>
+          </SharedButton>
           <Button />
         </div>
       </div>
