@@ -11,7 +11,6 @@ export function HomePage() {
     <LayoutContainer>
       <MarketPlaceHeader />
       <MarketPlaceSubmenu />
-
       <Button />
 
       <MarketPlaceFilters />
