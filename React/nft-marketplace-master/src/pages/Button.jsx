@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./StylishButton.css";
+import Search from "./Search";
 
 function Button({ setNfts }) {
   const [showModal, setShowModal] = useState(false);
@@ -111,120 +112,122 @@ function Button({ setNfts }) {
   };
 
   return (
-    <div className="button-container">
-      <div style={{ display: "flex" }}>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <div>
-            <button
-              onClick={() => setShowModal(true)}
-              className="stylish-button"
-            >
-              Add NFT
-            </button>
-          </div>
-          <div style={{ display: "flex", padding: "10px" }}>
-            <input
-              type="text"
-              placeholder="NFT ID for Edit/Delete"
-              value={editId}
-              style={{ color: "black", padding: "5px 20px", fontSize: "10" }}
-              onChange={(e) => setEditId(e.target.value)}
-            />
-          </div>
-          <div>
-            <button onClick={handleEdit} className="stylish-button">
-              Edit NFT
-            </button>
-            <button onClick={handleDelete} className="stylish-button">
-              Delete NFT
-            </button>
-          </div>
-        </div>
-      </div>
-      {showModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={() => setShowModal(false)}>
-              &times;
-            </span>
-            <h2>{editMode ? "Edit NFT" : "Add New NFT"}</h2>
-            {error && <p className="error">{error}</p>}
-            <form onSubmit={handleSubmit}>
-              <label>
-                Image:
-                <input
-                  type="file"
-                  name="image"
-                  accept="image/*"
-                  onChange={handleFileChange}
-                />
-              </label>
-              <label>
-                Title:
-                <input
-                  type="text"
-                  name="title"
-                  value={newNft.title}
-                  onChange={handleInputChange}
-                  required
-                />
-              </label>
-              <label>
-                Rank:
-                <input
-                  type="text"
-                  name="rank"
-                  value={newNft.rank}
-                  onChange={handleInputChange}
-                  required
-                />
-              </label>
-              <label>
-                Author:
-                <input
-                  type="text"
-                  name="author"
-                  value={newNft.author}
-                  onChange={handleInputChange}
-                  required
-                />
-              </label>
-              <label>
-                Price (ETH):
-                <input
-                  type="number"
-                  step="0.01"
-                  name="price_eth"
-                  value={newNft.price_eth}
-                  onChange={handleInputChange}
-                  required
-                />
-              </label>
-              <label>
-                Price (USD):
-                <input
-                  type="number"
-                  step="0.01"
-                  name="price_usd"
-                  value={newNft.price_usd}
-                  onChange={handleInputChange}
-                  required
-                />
-              </label>
-              <button type="submit" className="submit-button">
-                {editMode ? "Update" : "Submit"}
+    <>
+      <div className="button-container">
+        <div style={{ display: "flex" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <div>
+              <button
+                onClick={() => setShowModal(true)}
+                className="stylish-button"
+              >
+                Add NFT
               </button>
-            </form>
+            </div>
+            <div style={{ display: "flex", padding: "10px" }}>
+              <input
+                type="text"
+                placeholder="NFT ID for Edit/Delete"
+                value={editId}
+                style={{ color: "black", padding: "5px 20px", fontSize: "10" }}
+                onChange={(e) => setEditId(e.target.value)}
+              />
+            </div>
+            <div>
+              <button onClick={handleEdit} className="stylish-button">
+                Edit NFT
+              </button>
+              <button onClick={handleDelete} className="stylish-button">
+                Delete NFT
+              </button>
+            </div>
           </div>
         </div>
-      )}
-    </div>
+        {showModal && (
+          <div className="modal">
+            <div className="modal-content">
+              <span className="close" onClick={() => setShowModal(false)}>
+                &times;
+              </span>
+              <h2>{editMode ? "Edit NFT" : "Add New NFT"}</h2>
+              {error && <p className="error">{error}</p>}
+              <form onSubmit={handleSubmit}>
+                <label>
+                  Image:
+                  <input
+                    type="file"
+                    name="image"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                  />
+                </label>
+                <label>
+                  Title:
+                  <input
+                    type="text"
+                    name="title"
+                    value={newNft.title}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </label>
+                <label>
+                  Rank:
+                  <input
+                    type="text"
+                    name="rank"
+                    value={newNft.rank}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </label>
+                <label>
+                  Author:
+                  <input
+                    type="text"
+                    name="author"
+                    value={newNft.author}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </label>
+                <label>
+                  Price (ETH):
+                  <input
+                    type="number"
+                    step="0.01"
+                    name="price_eth"
+                    value={newNft.price_eth}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </label>
+                <label>
+                  Price (USD):
+                  <input
+                    type="number"
+                    step="0.01"
+                    name="price_usd"
+                    value={newNft.price_usd}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </label>
+                <button type="submit" className="submit-button">
+                  {editMode ? "Update" : "Submit"}
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 
