@@ -1,4 +1,3 @@
-import { NftSection } from "../components/marketPlace/NftSection";
 import { MarketPlaceFilters } from "../components/marketPlace/MarketPlaceFilters";
 import { MarketPlaceHeader } from "../components/marketPlace/MarketPlaceHeader";
 import { MarketPlaceSubmenu } from "../components/marketPlace/MarketPlaceSubmenu";
@@ -11,7 +10,6 @@ export function HomePage() {
       <MarketPlaceHeader />
       <MarketPlaceSubmenu />
       <MarketPlaceFilters />
-      <NftSection />
     </LayoutContainer>
   );
 }
