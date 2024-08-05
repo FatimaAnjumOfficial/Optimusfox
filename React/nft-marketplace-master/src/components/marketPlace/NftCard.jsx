@@ -1,7 +1,6 @@
 import React from "react";
 
 function NftCard({ nft }) {
-  // Destructure nft from props
   return (
     <div className="card border border-secondary-border rounded-xl border-solid p-2">
       <div>
