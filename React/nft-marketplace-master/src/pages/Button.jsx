@@ -260,7 +260,6 @@ function Button() {
             <h1 className="text-lg md:text-[35px] font-semibold text-center ">
               Preview
             </h1>
-            <br />
             <img
               src={selectedNft.image}
               alt={selectedNft.title}
