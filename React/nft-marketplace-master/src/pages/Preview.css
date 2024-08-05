@@ -1,0 +1,50 @@
+/* Styles for NFT List */
+.nft-preview {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.nft-preview img {
+  border-radius: 8px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.nft-preview p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.nft-preview h2 {
+  margin-bottom: 15px;
+}
+
+.stylish-button,
+.submit-button {
+  margin: 5px;
+}
+
+/* NFT Card Styles */
+.nft-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px;
+  width: 150px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.nft-card img {
+  border-radius: 8px;
+  width: 100%;
+  height: auto;
+  align-items: center;
+}
+
+.nft-card p {
+  margin: 5px 0;
+}
