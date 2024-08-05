@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./StylishButton.css";
-//import Search from "./Search";
+import NftCard from "../components/marketPlace/NftCard";
+import "./Preview.css";
 
-function Button({ setNfts }) {
+function Button() {
   const [showModal, setShowModal] = useState(false);
   const [newNft, setNewNft] = useState({
     image: "",
@@ -16,6 +17,22 @@ function Button({ setNfts }) {
   const [error, setError] = useState("");
   const [editMode, setEditMode] = useState(false);
   const [editId, setEditId] = useState("");
+  const [nfts, setNfts] = useState([]);
+  const [selectedNft, setSelectedNft] = useState(null);
+
+  // Fetch NFTs on component mount
+  useEffect(() => {
+    const fetchNfts = async () => {
+      try {
+        const response = await axios.get("http://localhost:4000/nfts");
+        setNfts(response.data);
+      } catch (error) {
+        setError("Failed to fetch NFTs.");
+      }
+    };
+
+    fetchNfts();
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -30,7 +47,7 @@ function Button({ setNfts }) {
 
     if (file) {
       const formData = new FormData();
-      formData.append("image", file); //add key/value pairs to the FormData Object.  Each key/value pair corresponds to a field in the form data
+      formData.append("image", file);
 
       try {
         await axios.post("http://localhost:4000/nfts", formData, {
@@ -43,18 +60,17 @@ function Button({ setNfts }) {
         const response = await axios.get("http://localhost:4000/nfts");
         setNfts(response.data);
       } catch (error) {
-        console.error("Error uploading image file", error);
+        setError("Error uploading image file.");
       }
 
-      const reader = new FileReader(); //to read the contents of files (such as images)
+      const reader = new FileReader();
       reader.onloadend = () => {
-        //onloadend event is used to handle actions after the reading process has finished.
         setNewNft((prevNft) => ({
-          ...prevNft, //spread operator. It copies all the existing properties of the previous state (prevNft) into the new state object.
-          image: reader.result, // stores the image data URL. This allows you to display or use the image data in your application.
+          ...prevNft,
+          image: reader.result,
         }));
       };
-      reader.readAsDataURL(file); //file ko url me convert krdeta h
+      reader.readAsDataURL(file);
     }
   };
 
@@ -93,7 +109,7 @@ function Button({ setNfts }) {
       setEditMode(true);
       setShowModal(true);
     } catch (error) {
-      setError("Failed to fetch NFT.");
+      setError("Failed to fetch NFT for editing.");
     }
   };
 
@@ -108,6 +124,15 @@ function Button({ setNfts }) {
       setNfts(response.data);
     } catch (error) {
       setError("Failed to delete NFT.");
+    }
+  };
+
+  const handleNftClick = async (id) => {
+    try {
+      const response = await axios.get(`http://localhost:4000/nfts/${id}`);
+      setSelectedNft(response.data);
+    } catch (error) {
+      setError("Failed to fetch NFT details.");
     }
   };
 
@@ -126,7 +151,7 @@ function Button({ setNfts }) {
               style={{
                 color: "black",
                 padding: "5px 20px",
-                fontSize: "10",
+                fontSize: "10px",
               }}
               onChange={(e) => setEditId(e.target.value)}
             />
@@ -213,6 +238,37 @@ function Button({ setNfts }) {
                 </button>
               </form>
             </div>
+          </div>
+        )}
+        <div style={{ display: "flex", flexWrap: "wrap" }}>
+          {nfts.length > 0 ? (
+            nfts.map((nft) => (
+              <div
+                key={nft.id}
+                onClick={() => handleNftClick(nft.id)}
+                style={{ cursor: "pointer", margin: "10px" }}
+              >
+                <NftCard nft={nft} />
+              </div>
+            ))
+          ) : (
+            <p>No NFTs available.</p>
+          )}
+        </div>
+        {selectedNft && (
+          <div className="nft-preview">
+            <h1>Preview</h1>
+            <img
+              src={selectedNft.image}
+              alt={selectedNft.title}
+              width={300}
+              height={300}
+            />
+            <p>Title: {selectedNft.title}</p>
+            <p>Rank: {selectedNft.rank}</p>
+            <p>Author: {selectedNft.author}</p>
+            <p>Price (ETH): {selectedNft.price_eth}</p>
+            <p>Price (USD): {selectedNft.price_usd}</p>
           </div>
         )}
       </div>
