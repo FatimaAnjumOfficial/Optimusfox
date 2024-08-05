@@ -4,7 +4,6 @@ import { MarketPlaceHeader } from "../components/marketPlace/MarketPlaceHeader";
 import { MarketPlaceSubmenu } from "../components/marketPlace/MarketPlaceSubmenu";
 import { LayoutContainer } from "../layout/LayoutContainer";
 import "./HomePage.css";
-//import Button from "./Button";
 
 export function HomePage() {
   return (
