@@ -19,6 +19,7 @@ function Button() {
   const [editId, setEditId] = useState("");
   const [nfts, setNfts] = useState([]);
   const [selectedNft, setSelectedNft] = useState(null);
+  const [imagePreview, setImagePreview] = useState("");
 
   // Fetch NFTs on component mount
   useEffect(() => {
@@ -69,6 +70,7 @@ function Button() {
           ...prevNft,
           image: reader.result,
         }));
+        setImagePreview(reader.result); // Set the preview URL
       };
       reader.readAsDataURL(file);
     }
@@ -181,6 +183,15 @@ function Button() {
                     onChange={handleFileChange}
                   />
                 </label>
+                {imagePreview && (
+                  <div className="image-preview-container">
+                    <img
+                      src={imagePreview}
+                      alt="Preview"
+                      className="image-preview"
+                    />
+                  </div>
+                )}
                 <label>
                   Title:
                   <input
